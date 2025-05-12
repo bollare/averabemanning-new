@@ -14,6 +14,10 @@ const upload = multer({ dest: 'uploads/' });
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/:page', (req, res) => {
+  res.sendFile(__dirname + `/public/${req.params.page}.html`);
+});
+
 app.post('/job-submit', upload.array('file'), async (req, res) => {
   const { name, email, phone, profession, message } = req.body;
 
