@@ -15,8 +15,10 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/:page', (req, res) => {
-  res.sendFile(__dirname + `/public/${req.params.page}.html`);
+  const filePath = path.join(__dirname, 'public', `${req.params.page}.html`);
+  res.sendFile(filePath);
 });
+
 
 app.post('/job-submit', upload.array('file'), async (req, res) => {
   const { name, email, phone, profession, message } = req.body;
@@ -95,6 +97,10 @@ app.post('/contact-submit', async (req, res) => {
     console.error(err);
     res.status(500).send("Något gick fel.");
   }
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(port, () => {
