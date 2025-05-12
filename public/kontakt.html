@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="sv">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kontakt - Avera Vårdbemanning</title>
+        <meta name="description" content="Funderar du på att bli konsult eller vill du bara veta mer om hur vi arbetar? Vi finns här för att lyssna, guida och hjälpa dig hitta en väg som passar just dig. Tveka inte att kontakta oss idag!">
+        <link rel="stylesheet" href="./css/bootstrap.css">
+        <link rel="stylesheet" href="./css/custom.css">
+    </head>
+    <body>
+      <div class="modal fade" tabindex="-1" id="exampleModal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="h3">Bli konsult på Avera</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/job-submit" method="POST" enctype="multipart/form-data" id="contact-form">
+                <div class="modal-body">
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">Namn</label>
+                      <input required id="name" name="name" type="text" class="form-control border-dark">
+                  </div>
+                  <div class="mb-3">
+                    <label for="profession" class="form-label fw-semibold">Yrke</label>
+                    <select required id="profession" name="profession" class="form-select border-dark">
+                        <option selected disabled>Välj ditt yrke...</option>
+                        <option value="Läkare">Läkare</option>
+                        <option value="Sjuksköterska">Sjuksköterska</option>
+                        <option value="Socionom">Socionom</option>
+                        <option value="Psykolog">Psykolog</option>
+                        <option value="Undersköterska">Undersköterska</option>
+                        <option value="Fysio/arbetsterapeut">Fysio/arbetsterapeut</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">E-post</label>
+                      <input required id="email" name="email" type="text" class="form-control border-dark">
+                  </div>
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">Telefon</label>
+                      <input required id="phone" name="phone" type="text" class="form-control border-dark">
+                  </div>
+                  <div class="mb-3">
+                      <label for="formFileMultiple" class="form-label fw-semibold">CV, Leg.bevis, etc...</label>
+                      <input required class="form-control border-dark" name="file" type="file" id="formFileMultiple" multiple>
+                      <p class="text-muted fst-italic mt-2" style="font-size: 14px;">För att välja flera filer på dator; håll in ctrl (eller command om du använder Mac) och klicka sedan på filerna du vill ladda upp.</p>
+                  </div>
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">Meddelande</label>
+                      <textarea required id="message" type="text" name="message" class="form-control border-dark" placeholder="Beskriv gärna vad du har för önskemål och krav..."></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-block w-100" id="form-status"></div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stäng</button>
+                    <button type="submit" class="btn btn-primary">Skicka ansökan</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-expand-md bg-white sticky-top" data-bs-theme="light">
+          <div class="container px-3 px-sm-0">
+            <a class="navbar-brand me-0 me-sm-3" href="index.html"><img src="media/Avera-vårdbemanning-grön.webp" class="rounded" width="115" alt="Avera Vårdbemanning"></a>
+            <a class="btn btn-light bg-light d-inline d-md-none border" style="font-size: 12px; padding-top: 12px; padding-bottom: 12px;" target="_blank" href="https://konsult.adocka.com/">Tidrapportering</a>
+            <button class="navbar-toggler bg-light rounded p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon fs-6"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor03">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="index.html">Hem
+                    <span class="visually-hidden">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <button style="cursor: pointer;" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Bli konsult</button>
+                  <div class="dropdown-menu">
+                      <button class="dropdown-item" style="cursor: pointer;" onclick="openFormWithProfession('Sjuksköterska')" data-bs-toggle="modal" data-bs-target="#exampleModal">Sjuksköterska</button>
+                      <button class="dropdown-item" style="cursor: pointer;" onclick="openFormWithProfession('Läkare')" data-bs-toggle="modal" data-bs-target="#exampleModal">Läkare</button>
+                      <button class="dropdown-item" style="cursor: pointer;" onclick="openFormWithProfession('Socionom')" data-bs-toggle="modal" data-bs-target="#exampleModal">Socionom</button>
+                      <button class="dropdown-item" style="cursor: pointer;" onclick="openFormWithProfession('Psykolog')" data-bs-toggle="modal" data-bs-target="#exampleModal">Psykolog</button>
+                      <button class="dropdown-item" style="cursor: pointer;" onclick="openFormWithProfession('Undersköterska')" data-bs-toggle="modal" data-bs-target="#exampleModal">Undersköterska</button>
+                      <button class="dropdown-item" style="cursor: pointer;" onclick="openFormWithProfession('Fysio/arbetsterapeut')" data-bs-toggle="modal" data-bs-target="#exampleModal">Fysio/arbetsterapeut</button>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="om-oss.html">Om Avera</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="vardgivare.html">För vårdgivare</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="kontakt.html">Kontakt</a>
+                </li>
+              </ul>
+              <a class="btn btn-light border d-none d-md-inline"  target="_blank" href="https://konsult.adocka.com/">Tidrapportering</a>
+            </div>
+          </div>
+      </nav>
+      <main>
+          <section class="container px-4 px-sm-0 pb-5 my-4 my-xl-5">
+              <div class="row pt-lg-5 pt-4">
+                  <div class="col-lg-6 col-xl-6">
+                      <h1>Kontakta oss</h1>
+                      <p style="max-width: 700px;"> Vill du veta mer om våra uppdrag, samarbeten eller hur det går till att bli konsult hos Avera? Hör av dig – vi svarar gärna och ser till att du får den information och det stöd du behöver för att känna dig trygg i nästa steg.</p>
+                      <div class="mt-4 mb-5 pb-4 d-flex flex-column align-items-start gap-3">
+                          <a class="d-block link-primary bg-light fs-6 px-2" href="tel:0701234567">070- 123 45 67</a>
+                          <a class="d-block link-primary bg-light fs-6 px-2" href="mailto:info@avera.se">info@averabemanning.se</a>
+                      </div>
+                      <h2 class="mb-4 text-center">Kontaktpersoner på Avera</h2>
+                      <div class="row bg-light py-4 px-1">
+                        <div class="col-sm-6 d-flex flex-column align-items-center mb-5">
+                            <div class="p-5 bg-secondary rounded-circle mb-3"></div>
+                            <strong>Mathias Alvar</strong>
+                            <a href="mailto:person1@averabemanning.se" class="link-primary" style="font-size: 11px;">person1@averabemanning.se</a>
+                            <a href="tel:0701234567" class="link-primary">070 751 02 37</a>
+                        </div>
+                        <div class="col-sm-6 d-flex flex-column align-items-center mb-5">
+                            <div class="p-5 bg-secondary rounded-circle mb-3"></div>
+                            <strong>Tobias Dahlström</strong>
+                            <a href="mailto:person1@averabemanning.se" class="link-primary" style="font-size: 11px;">person1@averabemanning.se</a>
+                            <a href="tel:0701234567" class="link-primary">073 785 71 19</a>
+                        </div>
+                        <div class="col-sm-6 d-flex flex-column align-items-center mb-5 mx-auto">
+                            <div class="p-5 bg-secondary rounded-circle mb-3"></div>
+                            <strong>Tobias Palmqvist</strong>
+                            <a href="mailto:person1@averabemanning.se" class="link-primary" style="font-size: 11px;">person1@averabemanning.se</a>
+                            <a href="tel:0701234567" class="link-primary">079 342 45 28</a>
+                        </div>
+                    </div>
+                      <h2 class="mt-5 mb-4 pb-2">Vanliga frågor</h2>
+                      <div class="accordion" id="accordionExample">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Hur ansöker jag om att bli konsult hos er?
+                              </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                              <div class="accordion-body">
+                                Du ansöker enkelt via vårt ansökningsformulär på hemsidan. Efter att vi tagit emot din ansökan kontaktar vi dig för en intervju och referenstagning.
+                              </div>
+                            </div>
+                          </div>
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Vilka typer av uppdrag erbjuder ni?
+                              </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                              <div class="accordion-body">
+                                Vi erbjuder uppdrag inom myndighetsutövning, primärvård, slutenvård, äldreomsorg och psykiatri – både inom kommunal och regional verksamhet. Uppdragen kan vara korta inhopp eller längre uppdrag.
+                              </div>
+                            </div>
+                          </div>
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Var finns era uppdrag geografiskt?
+                              </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                              <div class="accordion-body">
+                                Vi har uppdrag över hela Sverige. Du kan själv välja om du vill arbeta på hemmaplan eller resa till andra delar av landet.  
+                              </div>
+                            </div>
+                          </div>
+                          <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                  Behöver jag ha erfarenhet för att jobba hos er?
+                                </button>
+                              </h2>
+                              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  Ja, vi söker i regel legitimerad vårdpersonal med minst 1–2 års yrkeserfarenhet. Vissa uppdrag kan kräva specifik kompetens eller vidareutbildning. För dig som har erfarenhet inom socionomyrket och vill arbeta som konsult gör vi en individuell bedömning kring vad som kan passa dig bäst.  
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  Hur ser lönen ut?
+                                </button>
+                              </h2>
+                              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  Lönen varierar beroende på uppdrag, erfarenhet och geografiskt område, men ligger generellt över den genomsnittliga vårdlönen. Vi erbjuder konkurrenskraftig ersättning och tydlig löneinformation innan du tackar ja till ett uppdrag.  
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  Får jag reseersättning och boende?
+                                </button>
+                              </h2>
+                              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  Ja, vid uppdrag på annan ort hjälper vi oftast för resa och boende. Detta bekräftas alltid i samband med att uppdraget erbjuds.   
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                  När får jag min lön?
+                                </button>
+                              </h2>
+                              <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  Lönen betalas ut månadsvis, senast den 25:e varje månad, eller enligt överenskommelse. Du behöver skicka in dina tidrapporter i tid för att löneutbetalningen ska ske korrekt.  
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingEight">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                  Måste jag jobba heltid?
+                                </button>
+                              </h2>
+                              <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  Nej, du väljer själv hur mycket du vill arbeta. Vi har uppdrag som passar både dig som vill jobba heltid och dig som bara vill ta extratimmar.
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingNine">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                  Hur fungerar försäkringar och pension?
+                                </button>
+                              </h2>
+                              <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  Vi följer aktuella lagar och kollektivavtalsliknande lösningar gällande försäkring, pension och arbetsmiljö. Du är försäkrad under hela din arbetstid via oss.  
+                                </div>
+                              </div>
+                            </div>
+                            <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingTen">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                                  Vem kontaktar jag om jag har frågor under ett uppdrag?
+                                </button>
+                              </h2>
+                              <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                  Du har alltid en dedikerad konsultchef hos oss som finns tillgänglig för stöd och frågor – både före, under och efter uppdraget. Är du intresserad av att bli konsult är du välkommen att lämna en intresseanmälan.  
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="mt-5 mt-lg-0 ps-0 ps-lg-5 ps-xl-0 col-lg-6 col-xl-5 col-xxl-4 offset-xl-1 offset-xxl-2">
+                      <form action="/contact-submit" method="POST" enctype="multipart/form-data" id="contact-form" class="bg-light rounded p-4 shadow sticky-xl-top" style="top: 100px;">
+                          <h2>Skicka ett meddelande</h2>
+                          <p class="mb-4">Om du inte har möjligheten att ringa oss direkt får du gärna skicka ett meddelande via detta formulär. Vi svarar alltid snabbt!</p>
+                          <div class="mb-3">
+                              <label for="name" class="form-label fw-semibold">Namn</label>
+                              <input id="name" type="text" class="form-control border-dark">
+                          </div>
+                          <div class="mb-3">
+                              <label for="email" class="form-label fw-semibold">E-post</label>
+                              <input id="email" type="text" class="form-control border-dark">
+                          </div>
+                          <div class="mb-3">
+                              <label for="phone" class="form-label fw-semibold">Telefon</label>
+                              <input id="phone" type="text" class="form-control border-dark">
+                          </div>
+                          <div class="mb-3">
+                            <label for="message" class="form-label fw-semibold">Meddelande</label>
+                            <textarea id="message" type="text" class="form-control border-dark"></textarea>
+                          </div>
+                          <div class="d-block w-100" id="form-status"></div>
+                          <button class="btn btn-primary mt-3" type="submit">Skicka meddelande</button>
+                      </form>
+                  </div>
+              </div>
+          </section>
+
+          <section class="py-5 py-xl-5 mt-lg-5 bg-secondary">
+              <div class="container mt-4 mb-2">
+                  <div class="row">
+                      <div class="col-lg-8 mx-auto text-center">
+                          <h2>Redo att ta nästa steg vidare?</h2>
+                          <p> Tveka inte att höra av dig om du funderar på att bli konsult eller bara vill veta mer om hur vi arbetar. Vi finns här för att lyssna, guida och hjälpa dig hitta en väg som passar just dig.</p>
+                          <div class="d-none d-xl-flex position-relative justify-content-between gap-3 fs-6 mt-5" style="letter-spacing: 1px !important;">
+                              <div class="d-flex justify-content-end position-relative w-50">
+                                  <a class="position-absolute link-primary fs-6" href="tel:0701234567">070- 123 45 67</a>
+                              </div>
+                              <span>|</span>
+                              <div class="d-flex justify-content-start position-relative w-75">
+                                  <a class="position-absolute link-primary fs-6" href="mailto:info@avera.se">info@averabemanning.se</a>
+                              </div>
+                          </div>
+                          <div class="d-block d-xl-none mt-4">
+                              <a class="d-block link-primary fs-6 mb-3" href="tel:0701234567">070- 123 45 67</a>
+                              <a class="d-block link-primary fs-6" href="mailto:info@avera.se">info@averabemanning.se</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </section>
+      </main>
+      <footer class="container">
+          <div class="py-3 mt-4">
+              <div class="d-flex flex-column flex-lg-row flex-wrap justify-content-between align-items-center mb-3">
+                  <div class="d-flex flex-column flex-sm-row gap-2 align-items-center gap-2">
+                      <a href="/" class="me-3" aria-label="Bootstrap">
+                          <img src="media/Avera-vårdbemanning-grön.webp" width="100" class="rounded" alt="Avera Vårdbemanning">
+                      </a>
+                      <a class="nav-link" href="tel:070- 123 45 67">070- 123 45 67</a>
+                      <span class="d-none d-sm-inline">|</span>
+                      <a class="nav-link" href="mailto:info@averabemanning.se">info@averabemanning.se</a>
+                  </div>
+                  <ul class="nav col-lg-4 justify-content-center justify-content-lg-end mt-3 mt-xl-none">
+                      <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Hem</a></li>
+                      <li class="nav-item"><button data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link px-2 text-body-secondary">Bli konsult</button></li>
+                      <li class="nav-item"><a href="om-oss.html" class="nav-link px-2 text-body-secondary">Om Avera</a></li>
+                      <li class="nav-item"><a href="vardgivare.html" class="nav-link px-2 text-body-secondary">För vårdgivare</a></li>
+                      <li class="nav-item"><a href="kontakt.html" class="nav-link px-2 text-body-secondary">Kontakt</a></li>
+                  </ul> 
+              </div>
+              <p class="mb-0 text-body-secondary text-end border-top pt-2 text-center">© 2025 Avera Vårdbemanning</p>
+          </div> 
+      </footer>
+    </body>
+    <script>
+      function openFormWithProfession(profession) {
+          const select = document.getElementById("profession");
+          if (!select) return;
+      
+          for (let option of select.options) {
+              if (option.value === profession) {
+                  option.selected = true;
+                  break;
+              }
+          }
+      
+      }
+    </script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', async function (e) {
+        e.preventDefault(); // Stoppa vanlig form-submit
+    
+        const form = e.target;
+        const formData = new FormData(form);
+    
+        try {
+          const res = await fetch(form.action, {
+            method: form.method,
+            body: formData
+          });
+    
+          const statusBox = document.getElementById('form-status');
+          if (res.ok) {
+            form.reset();
+            statusBox.innerHTML = `
+              <div class="alert alert-success" role="alert">
+                Tack! Din ansökan har skickats. Vi hör av oss så fort som möjligt.
+              </div>
+            `;
+          } else {
+            const text = await res.text();
+            statusBox.innerHTML = `
+              <div class="alert alert-danger" role="alert">
+                Något gick fel: ${text}
+              </div>
+            `;
+          }
+        } catch (err) {
+          document.getElementById('form-status').innerHTML = `
+            <div class="alert alert-danger" role="alert">
+              Något gick fel. Se till att alla fält är ifyllda innan du skickar meddelandet. Du kan även skicka ett mail till oss på info@averabemanning.se
+            </div>
+          `;
+        }
+      });
+  </script>
+</html>
