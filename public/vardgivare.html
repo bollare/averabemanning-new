@@ -36,11 +36,11 @@
                   </div>
                   <div class="mb-3">
                       <label for="name" class="form-label fw-semibold">E-post</label>
-                      <input required id="email" name="email" type="text" class="form-control border-dark">
+                      <input required id="email" name="email" type="email" class="form-control border-dark">
                   </div>
                   <div class="mb-3">
                       <label for="name" class="form-label fw-semibold">Telefon</label>
-                      <input required id="phone" name="phone" type="text" class="form-control border-dark">
+                      <input required id="phone" name="phone" type="number" class="form-control border-dark">
                   </div>
                   <div class="mb-3">
                       <label for="formFileMultiple" class="form-label fw-semibold">CV, Leg.bevis, etc...</label>
@@ -64,14 +64,14 @@
       <nav class="navbar navbar-expand-md bg-white sticky-top" data-bs-theme="light">
           <div class="container px-3 px-sm-0">
             <a class="navbar-brand me-0 me-sm-3" href="/"><img src="media/Avera-vardbemanning-gron.webp" class="rounded" width="115" alt="Avera Vårdbemanning"></a>
-            <a class="btn btn-light bg-light d-inline d-md-none border" style="font-size: 12px; padding-top: 12px; padding-bottom: 12px;" target="_blank" href="/https://konsult.adocka.com/">Tidrapportering</a>
+            <a class="btn btn-light bg-light d-inline d-md-none border" style="font-size: 12px; padding-top: 12px; padding-bottom: 12px;" target="_blank" href="https://konsult.adocka.com/">Tidrapportering</a>
             <button class="navbar-toggler bg-light rounded p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon fs-6"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor03">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="/">Hem
+                  <a class="nav-link" href="/">Hem
                     <span class="visually-hidden">(current)</span>
                   </a>
                 </li>
@@ -90,13 +90,13 @@
                   <a class="nav-link" href="/om-oss">Om Avera</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/vardgivare">För vårdgivare</a>
+                  <a class="nav-link active" href="/vardgivare">För vårdgivare</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/kontakt">Kontakt</a>
                 </li>
               </ul>
-              <a class="btn btn-light border d-none d-md-inline"  target="_blank" href="/https://konsult.adocka.com/">Tidrapportering</a>
+              <a class="btn btn-light border d-none d-md-inline"  target="_blank" href="https://konsult.adocka.com/">Tidrapportering</a>
             </div>
           </div>
       </nav>
@@ -238,19 +238,19 @@
                           <p class="mb-4">Om du inte har möjligheten att ringa oss direkt får du gärna skicka ett meddelande via detta formulär. Vi svarar alltid snabbt!</p>
                           <div class="mb-3">
                               <label for="name" class="form-label fw-semibold">Namn/Verksamhet</label>
-                              <input id="name" type="text" class="form-control border-dark">
+                              <input id="name" name="name" type="text" class="form-control border-dark">
                           </div>
                           <div class="mb-3">
                               <label for="email" class="form-label fw-semibold">E-post</label>
-                              <input id="email" type="text" class="form-control border-dark">
+                              <input id="email" name="email" type="email" class="form-control border-dark">
                           </div>
                           <div class="mb-3">
                               <label for="phone" class="form-label fw-semibold">Telefon</label>
-                              <input id="phone" type="text" class="form-control border-dark">
+                              <input id="phone" name="phone" type="number" class="form-control border-dark">
                           </div>
                           <div class="mb-3">
                             <label for="message" class="form-label fw-semibold">Meddelande</label>
-                            <textarea id="message" type="text" class="form-control border-dark"></textarea>
+                            <textarea id="message" name="message" type="text" class="form-control border-dark"></textarea>
                         </div>
                           <div class="d-block w-100" id="form-status"></div>
                           <button class="btn btn-primary mt-3" type="submit">Skicka meddelande</button>

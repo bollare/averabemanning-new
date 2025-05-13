@@ -63,7 +63,7 @@ app.post('/job-submit', upload.array('file'), async (req, res) => {
 });
 
 app.post('/contact-submit', async (req, res) => {
-  const { message, name, email, phone } = req.body;
+  const { name, email, phone, message } = req.body;
 
   const transporter = nodemailer.createTransport({
     host: 'send.one.com',

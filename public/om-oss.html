@@ -17,61 +17,61 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="/job-submit" method="POST" enctype="multipart/form-data" id="contact-form">
-                    <div class="modal-body">
-                      <div class="mb-3">
-                          <label for="name" class="form-label fw-semibold">Namn</label>
-                          <input required id="name" name="name" type="text" class="form-control border-dark">
-                      </div>
-                      <div class="mb-3">
-                        <label for="profession" class="form-label fw-semibold">Yrke</label>
-                        <select required id="profession" name="profession" class="form-select border-dark">
-                            <option selected disabled>Välj ditt yrke...</option>
-                            <option value="Läkare">Läkare</option>
-                            <option value="Sjuksköterska">Sjuksköterska</option>
-                            <option value="Socionom">Socionom</option>
-                            <option value="Psykolog">Psykolog</option>
-                            <option value="Undersköterska">Undersköterska</option>
-                            <option value="Fysio/arbetsterapeut">Fysio/arbetsterapeut</option>
-                        </select>
-                      </div>
-                      <div class="mb-3">
-                          <label for="name" class="form-label fw-semibold">E-post</label>
-                          <input required id="email" name="email" type="text" class="form-control border-dark">
-                      </div>
-                      <div class="mb-3">
-                          <label for="name" class="form-label fw-semibold">Telefon</label>
-                          <input required id="phone" name="phone" type="text" class="form-control border-dark">
-                      </div>
-                      <div class="mb-3">
-                          <label for="formFileMultiple" class="form-label fw-semibold">CV, Leg.bevis, etc...</label>
-                          <input required class="form-control border-dark" name="file" type="file" id="formFileMultiple" multiple>
-                          <p class="text-muted fst-italic mt-2" style="font-size: 14px;">För att välja flera filer på dator; håll in ctrl (eller command om du använder Mac) och klicka sedan på filerna du vill ladda upp.</p>
-                      </div>
-                      <div class="mb-3">
-                          <label for="name" class="form-label fw-semibold">Meddelande</label>
-                          <textarea required id="message" type="text" name="message" class="form-control border-dark" placeholder="Beskriv gärna vad du har för önskemål och krav..."></textarea>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="d-block w-100" id="form-status"></div>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stäng</button>
-                        <button type="submit" class="btn btn-primary">Skicka ansökan</button>
-                    </div>
-                </form>
+                <div class="modal-body">
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">Namn</label>
+                      <input required id="name" name="name" type="text" class="form-control border-dark">
+                  </div>
+                  <div class="mb-3">
+                    <label for="profession" class="form-label fw-semibold">Yrke</label>
+                    <select required id="profession" name="profession" class="form-select border-dark">
+                        <option selected disabled>Välj ditt yrke...</option>
+                        <option value="Läkare">Läkare</option>
+                        <option value="Sjuksköterska">Sjuksköterska</option>
+                        <option value="Socionom">Socionom</option>
+                        <option value="Psykolog">Psykolog</option>
+                        <option value="Undersköterska">Undersköterska</option>
+                        <option value="Fysio/arbetsterapeut">Fysio/arbetsterapeut</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">E-post</label>
+                      <input required id="email" name="email" type="email" class="form-control border-dark">
+                  </div>
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">Telefon</label>
+                      <input required id="phone" name="phone" type="number" class="form-control border-dark">
+                  </div>
+                  <div class="mb-3">
+                      <label for="formFileMultiple" class="form-label fw-semibold">CV, Leg.bevis, etc...</label>
+                      <input required class="form-control border-dark" name="file" type="file" id="formFileMultiple" multiple>
+                      <p class="text-muted fst-italic mt-2" style="font-size: 14px;">För att välja flera filer på dator; håll in ctrl (eller command om du använder Mac) och klicka sedan på filerna du vill ladda upp.</p>
+                  </div>
+                  <div class="mb-3">
+                      <label for="name" class="form-label fw-semibold">Meddelande</label>
+                      <textarea required id="message" type="text" name="message" class="form-control border-dark" placeholder="Beskriv gärna vad du har för önskemål och krav..."></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-block w-100" id="form-status"></div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Stäng</button>
+                    <button type="submit" class="btn btn-primary">Skicka ansökan</button>
+                </div>
+            </form>
               </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-md bg-white sticky-top" data-bs-theme="light">
             <div class="container px-3 px-sm-0">
               <a class="navbar-brand me-0 me-sm-3" href="/"><img src="media/Avera-vardbemanning-gron.webp" class="rounded" width="115" alt="Avera Vårdbemanning"></a>
-              <a class="btn btn-light bg-light border d-inline d-md-none" style="font-size: 12px; padding-top: 12px; padding-bottom: 12px;" target="_blank" href="/https://konsult.adocka.com/">Tidrapportering</a>
+              <a class="btn btn-light bg-light border d-inline d-md-none" style="font-size: 12px; padding-top: 12px; padding-bottom: 12px;" target="_blank" href="https://konsult.adocka.com/">Tidrapportering</a>
               <button class="navbar-toggler bg-light rounded p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon fs-6"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav me-auto">
                   <li class="nav-item">
-                    <a class="nav-link active" href="/">Hem
+                    <a class="nav-link" href="/">Hem
                       <span class="visually-hidden">(current)</span>
                     </a>
                   </li>
@@ -87,16 +87,16 @@
                     </div>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/om-oss">Om Avera</a>
+                    <a class="nav-link active" href="/om-oss">Om Avera</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/vardgivare">För vårdgivare</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/vardgivare">Kontakt</a>
+                    <a class="nav-link" href="/kontakt">Kontakt</a>
                   </li>
                 </ul>
-                <a class="btn btn-light border d-none d-md-inline"  target="_blank" href="/https://konsult.adocka.com/">Tidrapportering</a>
+                <a class="btn btn-light border d-none d-md-inline"  target="_blank" href="https://konsult.adocka.com/">Tidrapportering</a>
               </div>
             </div>
         </nav>
@@ -116,21 +116,21 @@
                         <h2 class="mb-4 text-center">Vi på Avera</h2>
                           <div class="row bg-light py-4 px-1">
                             <div class="col-sm-6 d-flex flex-column align-items-center mb-5">
-                              <div class="p-5 bg-secondary rounded-circle mb-3"></div>
-                              <strong>Mathias Alvar</strong>
-                              <a href="/mailto:mathias@averabemanning.se" class="link-primary" style="font-size: 11px;">mathias@averabemanning.se</a>
-                              <a href="/tel:070 751 02 37" class="link-primary">070 751 02 37</a>
+                            <div class="p-5 bg-secondary rounded-circle mb-3"></div>
+                            <strong>Mathias Ahlvar</strong>
+                            <a href="/mailto:mathias.ahlvar@averabemanning.se" class="link-primary" style="font-size: 11px;">mathias.ahlvar@averabemanning.se</a>
+                            <a href="/tel:070 751 02 37" class="link-primary">070 751 02 37</a>
                           </div>
                           <div class="col-sm-6 d-flex flex-column align-items-center mb-5">
                               <div class="p-5 bg-secondary rounded-circle mb-3"></div>
                               <strong>Tobias Dahlström</strong>
-                              <a href="/mailto:tobias@averabemanning.se" class="link-primary" style="font-size: 11px;">tobias@averabemanning.se</a>
+                              <a href="/mailto:tobias.dahlstrom@averabemanning.se" class="link-primary" style="font-size: 11px;">tobias.dahlstrom@averabemanning.se</a>
                               <a href="/tel:073 785 71 19" class="link-primary">073 785 71 19</a>
                           </div>
                           <div class="col-sm-6 d-flex flex-column align-items-center mb-5 mx-auto">
                               <div class="p-5 bg-secondary rounded-circle mb-3"></div>
                               <strong>Tobias Palmqvist</strong>
-                              <a href="/mailto:tobias@averabemanning.se" class="link-primary" style="font-size: 11px;">tobias@averabemanning.se</a>
+                              <a href="/mailto:tobias.palmqvist@averabemanning.se" class="link-primary" style="font-size: 11px;">tobias.palmqvist@averabemanning.se</a>
                               <a href="/tel:079 342 45 28" class="link-primary">079 342 45 28</a>
                           </div>
                         </div>
