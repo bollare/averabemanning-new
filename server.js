@@ -65,6 +65,10 @@ app.post('/job-submit', upload.array('file'), async (req, res) => {
 app.post('/contact-submit', async (req, res) => {
   const { contactName, contactEmail, contactPhone, contactMessage } = req.body;
 
+  if (!contactName || !contactEmail || !contactMessage) {
+    return res.status(400).send("Alla fält måste fyllas i.");
+  }
+
   const transporter = nodemailer.createTransport({
     host: 'send.one.com',
     port: 465,
@@ -74,27 +78,25 @@ app.post('/contact-submit', async (req, res) => {
       pass: process.env.EMAIL_PASS
     }
   });
-  
 
   const mailOptions = {
     from: '"averabemanning.se - kontakt" <info@jonias.se>',
-    to: 'info@jonias.se',                           
-    replyTo: req.body.contactEmail,                         
-    subject: `Nytt meddelande från ${req.body.contactName}`,
+    to: 'info@jonias.se',
+    replyTo: contactEmail,
+    subject: `Nytt meddelande från ${contactName}`,
     text: `
-      Namn: ${req.body.contactName}
-      E-post: ${req.body.contactEmail}
-      Telefon: ${req.body.contactPhone}
-      Meddelande: ${req.body.contactMessage}
+      Namn: ${contactName}
+      E-post: ${contactEmail}
+      Telefon: ${contactPhone}
+      Meddelande: ${contactMessage}
     `
   };
-  
 
   try {
     await transporter.sendMail(mailOptions);
     res.send("Tack för din ansökan!");
   } catch (err) {
-    console.error(err);
+    console.error("Mailfel:", err);
     res.status(500).send("Något gick fel.");
   }
 });

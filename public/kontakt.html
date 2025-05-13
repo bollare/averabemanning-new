@@ -257,26 +257,31 @@
                   </div>
                   <div class="mt-5 mt-lg-0 ps-0 ps-lg-5 ps-xl-0 col-lg-6 col-xl-5 col-xxl-4 offset-xl-1 offset-xxl-2">
                       <form action="/contact-submit" method="POST" id="contact-form" class="bg-light rounded p-4 shadow sticky-xl-top" style="top: 100px;">
-                          <h2>Skicka ett meddelande</h2>
-                          <p class="mb-4">Om du inte har möjligheten att ringa oss direkt får du gärna skicka ett meddelande via detta formulär. Vi svarar alltid snabbt!</p>
-                          <div class="mb-3">
-                              <label for="contactName" class="form-label fw-semibold">Namn</label>
-                              <input required id="contactName" name="contactName" type="text" class="form-control border-dark">
-                          </div>
-                          <div class="mb-3">
-                              <label for="contactEmail" class="form-label fw-semibold">E-post</label>
-                              <input required id="contactEmail" name="contactEmail" type="email" class="form-control border-dark">
-                          </div>
-                          <div class="mb-3">
-                              <label for="contactPhone" class="form-label fw-semibold">Telefon</label>
-                              <input required id="contactPhone" name="contactPhone" type="number" class="form-control border-dark">
-                          </div>
-                          <div class="mb-3">
-                            <label for="contactMessage" class="form-label fw-semibold">Meddelande</label>
-                            <textarea required id="contactMessage" name="contactMessage" class="form-control border-dark"></textarea>
-                          </div>
-                          <div class="d-block w-100" id="contact-status"></div>
-                          <button class="btn btn-primary mt-3" type="submit">Skicka meddelande</button>
+                        <h2>Skicka ett meddelande</h2>
+                        <p class="mb-4">Om du inte har möjligheten att ringa oss direkt får du gärna skicka ett meddelande via detta formulär. Vi svarar alltid snabbt!</p>
+
+                        <div class="mb-3">
+                          <label for="contactName" class="form-label fw-semibold">Namn</label>
+                          <input required id="contactName" name="contactName" type="text" class="form-control border-dark">
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="contactEmail" class="form-label fw-semibold">E-post</label>
+                          <input required id="contactEmail" name="contactEmail" type="email" class="form-control border-dark">
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="contactPhone" class="form-label fw-semibold">Telefon</label>
+                          <input required id="contactPhone" name="contactPhone" type="tel" class="form-control border-dark">
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="contactMessage" class="form-label fw-semibold">Meddelande</label>
+                          <textarea required id="contactMessage" name="contactMessage" class="form-control border-dark"></textarea>
+                        </div>
+
+                        <div class="d-block w-100" id="contact-status"></div>
+                        <button class="btn btn-primary mt-3" type="submit">Skicka meddelande</button>
                       </form>
                   </div>
               </div>
@@ -384,41 +389,44 @@
       });
   </script>
   <script>
-      document.getElementById('contact-form').addEventListener('submit', async function (e) {
-        e.preventDefault(); // Stoppa vanlig form-submit
-    
-        const form = e.target;
-        const formData = new FormData(form);
-    
-        try {
-          const res = await fetch(form.action, {
-            method: form.method,
-            body: formData
-          });
-    
-          const statusBox = document.getElementById('contact-status');
-          if (res.ok) {
-            form.reset();
-            statusBox.innerHTML = `
-              <div class="alert alert-success" role="alert">
-                Tack! Din ansökan har skickats. Vi hör av oss så fort som möjligt.
-              </div>
-            `;
-          } else {
-            const text = await res.text();
-            statusBox.innerHTML = `
-              <div class="alert alert-danger" role="alert">
-                Något gick fel: ${text}
-              </div>
-            `;
-          }
-        } catch (err) {
-          document.getElementById('contact-status').innerHTML = `
-            <div class="alert alert-danger" role="alert">
-              Något gick fel. Se till att alla fält är ifyllda innan du skickar meddelandet. Du kan även skicka ett mail till oss på info@averabemanning.se
-            </div>
-          `;
-        }
+  document.getElementById('contact-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new URLSearchParams(new FormData(form)); // 👈 detta gör skillnaden
+
+    try {
+      const res = await fetch(form.action, {
+        method: form.method,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData
       });
-  </script>
+
+      const statusBox = document.getElementById('contact-status');
+      if (res.ok) {
+        form.reset();
+        statusBox.innerHTML = `
+          <div class="alert alert-success" role="alert">
+            Tack! Ditt meddelande har skickats.
+          </div>
+        `;
+      } else {
+        const text = await res.text();
+        statusBox.innerHTML = `
+          <div class="alert alert-danger" role="alert">
+            Något gick fel: ${text}
+          </div>
+        `;
+      }
+    } catch (err) {
+      document.getElementById('contact-status').innerHTML = `
+        <div class="alert alert-danger" role="alert">
+          Något gick fel. Du kan även skicka ett mail till oss på info@averabemanning.se
+        </div>
+      `;
+    }
+  });
+</script>
 </html>
