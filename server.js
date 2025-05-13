@@ -21,7 +21,7 @@ app.get('/:page', (req, res) => {
 
 
 app.post('/job-submit', upload.array('file'), async (req, res) => {
-  const { name, email, phone, profession, message } = req.body;
+  const { name, profession, email, phone, message } = req.body;
 
   const transporter = nodemailer.createTransport({
     host: 'send.one.com',
@@ -35,16 +35,17 @@ app.post('/job-submit', upload.array('file'), async (req, res) => {
   
 
   const mailOptions = {
-    from: '"averabemanning.se formulär" <info@jonias.se>', // Måste matcha inloggad SMTP-användare
-    to: 'info@jonias.se',                             // Eller annan mottagare inom samma domän
-    replyTo: req.body.email,                          // Svar skickas till användaren
+    from: '"averabemanning.se - jobba" <info@jonias.se>',
+    to: 'info@jonias.se',
+    replyTo: req.body.email,
     subject: `Ny ansökan från ${req.body.name}`,
     text: `
-      Namn: ${req.body.name}
-      Yrke: ${req.body.profession}
-      E-post: ${req.body.email}
-      Telefon: ${req.body.phone}
-      Meddelande: ${req.body.message}
+      <strong>Namn:</strong> ${req.body.name}
+      <strong>Yrke:</strong> ${req.body.profession}
+      <strong>E-post:</strong> ${req.body.email}
+      <strong>Telefon:</strong> ${req.body.phone}
+      </br>
+      <strong>Meddelande:</strong> ${req.body.message}
     `,
     attachments: req.files.map(file => ({
       filename: file.originalname,
@@ -77,9 +78,9 @@ app.post('/contact-submit', async (req, res) => {
   
 
   const mailOptions = {
-    from: '"averabemanning.se formulär" <info@jonias.se>', // Måste matcha inloggad SMTP-användare
-    to: 'info@jonias.se',                             // Eller annan mottagare inom samma domän
-    replyTo: req.body.email,                          // Svar skickas till användaren
+    from: '"averabemanning.se - kontakt" <info@jonias.se>',
+    to: 'info@jonias.se',                           
+    replyTo: req.body.email,                         
     subject: `Nytt meddelande från ${req.body.name}`,
     text: `
       Meddelande: ${req.body.message}
