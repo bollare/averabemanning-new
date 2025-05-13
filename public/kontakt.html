@@ -16,7 +16,7 @@
                 <h5 class="h3">Bli konsult på Avera</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/job-submit" method="POST" enctype="multipart/form-data" id="contact-form">
+            <form action="/job-submit" method="POST" enctype="multipart/form-data" id="application-form">
                 <div class="modal-body">
                   <div class="mb-3">
                       <label for="name" class="form-label fw-semibold">Namn</label>
@@ -346,19 +346,19 @@
     <script src="./js/bootstrap.bundle.min.js"></script>
 
     <script>
-      document.getElementById('contact-form').addEventListener('submit', async function (e) {
-        e.preventDefault(); // Stoppa vanlig form-submit
-    
+      async function handleFormSubmit(e) {
+        e.preventDefault();
+
         const form = e.target;
         const formData = new FormData(form);
-    
+        const statusBox = form.querySelector('.form-status') || document.getElementById('form-status');
+
         try {
           const res = await fetch(form.action, {
             method: form.method,
             body: formData
           });
-    
-          const statusBox = document.getElementById('form-status');
+
           if (res.ok) {
             form.reset();
             statusBox.innerHTML = `
@@ -375,12 +375,18 @@
             `;
           }
         } catch (err) {
-          document.getElementById('form-status').innerHTML = `
+          statusBox.innerHTML = `
             <div class="alert alert-danger" role="alert">
               Något gick fel. Se till att alla fält är ifyllda innan du skickar meddelandet. Du kan även skicka ett mail till oss på info@averabemanning.se
             </div>
           `;
         }
-      });
-  </script>
+      }
+
+      const contactForm = document.getElementById('contact-form');
+      const applicationForm = document.getElementById('application-form');
+
+      if (contactForm) contactForm.addEventListener('submit', handleFormSubmit);
+      if (applicationForm) applicationForm.addEventListener('submit', handleFormSubmit);
+    </script>
 </html>
