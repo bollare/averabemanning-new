@@ -64,7 +64,7 @@ app.post('/job-submit', upload.array('file'), async (req, res) => {
 });
 
 app.post('/contact-submit', async (req, res) => {
-  const { name, email, phone, message } = req.body;
+  const { contactName, contactEmail, contactPhone, contactMessage } = req.body;
 
   const transporter = nodemailer.createTransport({
     host: 'send.one.com',
@@ -80,13 +80,13 @@ app.post('/contact-submit', async (req, res) => {
   const mailOptions = {
     from: '"averabemanning.se - kontakt" <info@jonias.se>',
     to: 'info@jonias.se',                           
-    replyTo: req.body.email,                         
-    subject: `Nytt meddelande från ${req.body.name}`,
+    replyTo: req.body.contactEmail,                         
+    subject: `Nytt meddelande från ${req.body.contactName}`,
     text: `
-      Meddelande: ${req.body.message}
-      Namn: ${req.body.name}
-      E-post: ${req.body.email}
-      Telefon: ${req.body.phone}
+      Namn: ${req.body.contactName}
+      E-post: ${req.body.contactEmail}
+      Telefon: ${req.body.contactPhone}
+      Meddelande: ${req.body.contactMessage}
     `
   };
   
