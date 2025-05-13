@@ -40,12 +40,11 @@ app.post('/job-submit', upload.array('file'), async (req, res) => {
     replyTo: req.body.email,
     subject: `Ny ansökan från ${req.body.name}`,
     text: `
-      <strong>Namn:</strong> ${req.body.name}
-      <strong>Yrke:</strong> ${req.body.profession}
-      <strong>E-post:</strong> ${req.body.email}
-      <strong>Telefon:</strong> ${req.body.phone}
-      </br>
-      <strong>Meddelande:</strong> ${req.body.message}
+      Namn: ${req.body.name}
+      Yrke: ${req.body.profession}
+      E-post: ${req.body.email}
+      Telefon: ${req.body.phone}
+      Meddelande: ${req.body.message}
     `,
     attachments: req.files.map(file => ({
       filename: file.originalname,
