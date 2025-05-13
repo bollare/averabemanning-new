@@ -36,7 +36,7 @@ app.post('/job-submit', upload.array('file'), async (req, res) => {
 
   const mailOptions = {
     from: '"averabemanning.se - jobba" <info@jonias.se>',
-    to: 'info@jonias.se',
+    to: 'info@averabemanning.se',
     replyTo: req.body.email,
     subject: `Ny ansökan från ${req.body.name}`,
     text: `
@@ -81,7 +81,7 @@ app.post('/contact-submit', async (req, res) => {
 
   const mailOptions = {
     from: '"averabemanning.se - kontakt" <info@jonias.se>',
-    to: 'info@jonias.se',
+    to: 'info@averabemanning.se',
     replyTo: contactEmail,
     subject: `Nytt meddelande från ${contactName}`,
     text: `
