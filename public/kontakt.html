@@ -49,7 +49,7 @@
                   </div>
                   <div class="mb-3">
                       <label for="name" class="form-label fw-semibold">Meddelande</label>
-                      <textarea required id="message" type="text" name="message" class="form-control border-dark" placeholder="Beskriv gärna vad du har för önskemål och krav..."></textarea>
+                      <textarea required id="message" name="message" class="form-control border-dark" placeholder="Beskriv gärna vad du har för önskemål och krav..."></textarea>
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -261,19 +261,19 @@
                           <p class="mb-4">Om du inte har möjligheten att ringa oss direkt får du gärna skicka ett meddelande via detta formulär. Vi svarar alltid snabbt!</p>
                           <div class="mb-3">
                               <label for="name" class="form-label fw-semibold">Namn</label>
-                              <input id="name" name="name" type="text" class="form-control border-dark">
+                              <input required id="name" name="name" type="text" class="form-control border-dark">
                           </div>
                           <div class="mb-3">
                               <label for="email" class="form-label fw-semibold">E-post</label>
-                              <input id="email" name="email" type="email" class="form-control border-dark">
+                              <input required id="email" name="email" type="email" class="form-control border-dark">
                           </div>
                           <div class="mb-3">
                               <label for="phone" class="form-label fw-semibold">Telefon</label>
-                              <input id="phone" name="phone" type="number" class="form-control border-dark">
+                              <input required id="phone" name="phone" type="number" class="form-control border-dark">
                           </div>
                           <div class="mb-3">
                             <label for="message" class="form-label fw-semibold">Meddelande</label>
-                            <textarea id="message" name="message" type="text" class="form-control border-dark"></textarea>
+                            <textarea required id="message" name="message" class="form-control border-dark"></textarea>
                           </div>
                           <div class="d-block w-100" id="form-status"></div>
                           <button class="btn btn-primary mt-3" type="submit">Skicka meddelande</button>
